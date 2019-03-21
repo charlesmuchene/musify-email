@@ -12,7 +12,7 @@ public class ChartEmailListener {
     EmailService emailService;
 
     public void listen(Mail mail) {
-        System.out.println("*** OK, I'm going to send chart email now... ***");
+        System.out.println("\n*** Sending... chart email to " + mail.getReceipientEmail());
 
         try {
             emailService.sendChartMail(mail.getReceipientName(), mail.getReceipientEmail(), mail.getChartTitle(), mail.getSongs(), new Locale("en"));
