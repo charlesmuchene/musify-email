@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/rabbit
+        http://www.springframework.org/schema/rabbit/spring-rabbit.xsd">
+
+    <!-- RabbitMQ Configurations -->
+    <rabbit:connection-factory id="connectionFactory" host="localhost" username="guest" password="guest"/>
+
+    <!-- *********** DIRECT EXCHANGE ***************** -->
+    <rabbit:queue name="mailQueue" durable="false"/>
+
+    <rabbit:direct-exchange name="mail" durable="false">
+        <rabbit:bindings>
+            <rabbit:binding queue="mailQueue" key="chart.mail"></rabbit:binding>
+        </rabbit:bindings>
+    </rabbit:direct-exchange>
+
+    <!--  ****************  DIRECT CONSUMER ************************* -->
+    <rabbit:listener-container connection-factory="connectionFactory">
+        <rabbit:listener ref="mailQueueListener" method="listen" queue-names="mailQueue" />
+    </rabbit:listener-container>
+
+    <bean id="mailQueueListener" class="dev.cstv.musify.email.listener.ChartEmailListener" />
+
+</beans>

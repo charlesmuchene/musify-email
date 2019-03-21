@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title th:remove="all">Template for Chart email </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+    <body>
+
+    <p>Dear <span th:text="${name}"></span>,</p>
+
+    <div style="font-size:20px">
+        <em>Musify: Bringing music to the world!</em>
+        <div style="text-indent: 8em;">
+            <img src="cid:logo"  height="200" width="200" />
+        </div>
+    </div>
+
+    <h4 th:text="${chartTitle}"></h4>
+
+    <div th:each="song : ${songs}" >
+        <p><span th:text="${song}"></span></p>
+    </div>
+
+    <p><br />
+        Thank you, <br />
+        &emsp; <em><b>CSTV Team</b></em>
+    </p>
+    </body>
+</html>
