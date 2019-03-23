@@ -1,7 +1,7 @@
 # Musify
 **Bring Music to the world!**
 
-Musify is a music streaming spring application with a RESTful api. 
+Musify email app listen to AMQP using RabbitMQ for chart song and send chart email to user.
 ### Contributors
 	- Charles
 	- Steven
